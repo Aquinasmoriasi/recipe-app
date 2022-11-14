@@ -10,8 +10,8 @@ gem 'rails', '~> 7.0.4'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# Use pg as the database for Active Record
+gem 'pg', '~> 1.1'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
@@ -64,3 +64,28 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+group :test do
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'capybara'
+  gem 'rspec-rails', '~> 6.0.0'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+end
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "cssbundling-rails"
+gem 'will_paginate', '~> 3.3', '>= 3.3.1'
+
+gem 'will_paginate-bootstrap5', '~> 0.2.4'
+
+gem 'rails-controller-testing'
+
+gem "sassc-rails"
+gem 'sass'
+gem 'sass-listen', '~> 4.0'
+
+gem 'bootstrap', '~> 5.0'
+
+gem 'bootstrap_form', '~> 5.1'
+gem 'devise'
