@@ -32,3 +32,45 @@ table {
   justify-content: space-between;
   margin-top: auto;
 }
+
+.bg-blue {
+  background-color: #08088a;
+}
+
+.container-fluid {
+  padding-left: 50px !important;
+}
+
+.navbar {
+  margin-bottom: 2.4%;
+  padding-right: 50px;
+}
+
+.second-nav {
+  margin-right: 100px;
+}
+
+.navbar-brand {
+  float: left;
+  font-size: 1.7em;
+  color: #fff !important;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.navbar-brand:hover {
+  color: red;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.seperate {
+  display: flex;
+  gap: 10px;
+}
+
+a {
+  text-decoration: none !important;
+}

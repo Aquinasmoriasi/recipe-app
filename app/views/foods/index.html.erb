@@ -6,7 +6,6 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Measurement</th>
-      <th scope="col">Quantity</th>
       <th scope="col">Price</th>
         <th scope="col">Actions</th>
     </tr>
@@ -16,7 +15,6 @@
     <tr>
       <td><%= food.name %></td>
       <td><%= food.measurement %></td>
-      <td><%= food.quantity %></td>
       <td>$<%= food.price %></td>
       <td class="last">
          <%= link_to "edit", edit_food_path(food),class: "btn btn-success" %>
