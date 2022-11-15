@@ -1,3 +1,8 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .last {
   display: flex;
   gap: 10px;
@@ -5,4 +10,24 @@
 
 table {
   border: 1px solid black;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.footer {
+  display: flex;
+  color: white;
+  padding: 20px 40px 20px 40px;
+  font-size: 20px;
+  justify-content: space-between;
+  margin-top: auto;
 }
