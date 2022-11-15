@@ -12,14 +12,13 @@
 <div class="mb-3">
   <%= f.label :password, class: "form-label" %> 
 
-  <%= f.password_field :password, class: "form-control",placeholder: "enter
-  password",autocomplete: "new-password" %>
+  <%= f.password_field :password, class: "form-control",placeholder: "enterpassword",autocomplete: "new-password" %>
 </div>
 
 <div class="mb-3">
    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control" %>
+    <%= f.password_field :password_confirmation,placeholder: "Re-enter password" autocomplete: "new-password",class: "form-control" %>
 </div>
-<%= f.submit "Signup" , class: "btn btn-primary" %> 
+<%= f.submit "Signup" , class: "btn btn-primary btn-lg" %> 
 <% end %>
 </div>
