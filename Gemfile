@@ -68,21 +68,22 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'rspec', '~> 3.12'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails"
+gem 'cssbundling-rails'
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 
 gem 'will_paginate-bootstrap5', '~> 0.2.4'
 
 gem 'rails-controller-testing'
 
-gem "sassc-rails"
 gem 'sass'
+gem 'sassc-rails'
 gem 'sass-listen', '~> 4.0'
 
 gem 'bootstrap', '~> 5.0'
