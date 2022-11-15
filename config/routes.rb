@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 post 'authenticate', to: 'authentication#authenticate'
  resources :foods 
   resources :users, only: [:index]
-  resources :recipes, only: [:index, :new, :show, :destroy, :create] do
+  resources :recipes do
     resources :recipe_foods
   end
     get '/general_shopping_list', to: 'foods#general'
