@@ -1,0 +1,39 @@
+<h2 class="text-center text-decoration-underline">Recipe #<%= @recipe.id %></h2>
+
+<div class="d-flex justify-content-between">
+    <p>Preparation time: <%= @recipe.preparation_time%><%="Hour".pluralize(@recipe.preparation_time)%></p>
+    <div class="d-flex gap-2 align-items-start">
+        <p>Public:  </p>
+        <label class="switch mt-1">
+            <%=check_box_tag("public", value = "1", checked = @recipe.public, disabled: true )%>
+            <span class="slider round"></span>
+        </label>
+    </div>
+</div>
+<div>
+    <p>Cooking time: <%= @recipe.cooking_time%><%="Hour".pluralize(@recipe.cooking_time)%></p>
+</div>
+
+<h5 class="text-decoration-underline ps-3">Steps</h5>
+<ol>
+    <% @recipe.description.split(/\n/) do |des| %>
+        <li>
+            <%= des %>
+        </li>
+    <% end %>
+</ol>
+<div class="d-flex justify-content-between">
+    <button class="btn btn-success">Generate shopping list</button>
+    <button class="btn btn-success">Add ingredient</button>
+</div>
+<table class="table table-bordered table-striped mt-4">
+  <thead>
+    <tr>
+      <th scope="col">Food</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Value</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+</table>
+
