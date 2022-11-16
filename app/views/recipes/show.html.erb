@@ -1,4 +1,4 @@
-<h2 class="text-center text-decoration-underline">Recipe #<%= @recipe.id %></h2>
+<h2 class="text-center text-decoration-underline"> <%= @recipe.name %></h2>
 
 <div class="d-flex justify-content-between">
     <p>Preparation time: <%= @recipe.preparation_time%><%="Hour".pluralize(@recipe.preparation_time)%></p>
