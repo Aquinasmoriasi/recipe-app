@@ -1,5 +1,4 @@
 class RecipeFoodsController < ApplicationController
-
   def index
     @recipe_foods = RecipeFood.all
   end
@@ -28,7 +27,7 @@ class RecipeFoodsController < ApplicationController
     recipe_food.destroy
     flash[:danger] = 'Ingredient was successfully removed.'
   end
- 
+
   def edit
     @recipe_food_edit = RecipeFood.find(params[:id])
     @foods = Food.all
