@@ -24,7 +24,9 @@
 </ol>
 <div class="d-flex justify-content-between">
     <button class="btn btn-success">Generate shopping list</button>
-    <button class="btn btn-success">Add ingredient</button>
+    <%= link_to new_recipe_recipe_food_path(@recipe), class: "btn btn-success" do %>
+        Add ingredient
+    <% end %>
 </div>
 <table class="table table-bordered table-striped mt-4">
   <thead>
