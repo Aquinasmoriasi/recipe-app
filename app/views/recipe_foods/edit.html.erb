@@ -1,5 +1,5 @@
 <div>
-  <%= form_for @recipe_food, url: recipe_recipe_foods_url, method: :post do |f| %>
+  <%= form_for @recipe_food_edit, url: recipe_recipe_food_url do |f| %>
   <div class="d-flex flex-column mb-2">
     <%= f.label :quantity %>
     <%= f.number_field :quantity, class: "col-4 p-1  border rounded" %>
@@ -8,5 +8,6 @@
     <%= f.label :foods %>
     <%= select_tag "food",options_for_select(@foods.map { |food| [food.name, food.id] }), class: "col-4 p-1  border rounded" %>
    </div>
-  <%= f.submit "Add", class: "btn btn-primary" %> <% end %>
+   <%= f.submit "Save", class: "btn btn-primary" %> 
+  <% end %>
 </div>

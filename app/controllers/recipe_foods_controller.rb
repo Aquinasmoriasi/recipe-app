@@ -1,12 +1,7 @@
 class RecipeFoodsController < ApplicationController
-  # before_action :set_recipe_food, only: %i[ show edit update destroy ]
 
   def index
     @recipe_foods = RecipeFood.all
-  end
-
-  def show
-    @recipe_foods = RecipeFood.find(params[:id])
   end
 
   def create
@@ -28,9 +23,25 @@ class RecipeFoodsController < ApplicationController
   end
 
   def destroy
+    recipe_food = RecipeFood.find(params[:id])
+    redirect_to recipe_path(recipe_food.recipe)
+    recipe_food.destroy
+    flash[:danger] = 'Ingredient was successfully removed.'
+  end
+ 
+  def edit
+    @recipe_food_edit = RecipeFood.find(params[:id])
+    @foods = Food.all
   end
 
-  def edit
+  def update
+    @recipe_food_edit = RecipeFood.find(params[:id])
+    if @recipe_food_edit.update(recipe_params)
+      flash[:success] = 'Ingredient successfully updated.'
+      redirect_to recipe_path(@recipe_food_edit.recipe)
+    else
+      flash[:danger] = 'Ingredient updating Failed. Please try again.'
+    end
   end
 
   private
