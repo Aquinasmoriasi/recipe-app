@@ -40,6 +40,27 @@ class RecipeFoodsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def edit
+    recipe_food = RecipeFood.find(params[:id])
+      unless recipe_food.recipe.user == current_user
+      flash[:alert] =
+        'You can not delete the ingredient that you did not added unless you are pro hacker'
+      return redirect_to recipes_path
+    end
+    @recipe_food_edit = RecipeFood.find(params[:id])
+    @foods = Food.all
+  end
+
+  def update
+    @recipe_food_edit = RecipeFood.find(params[:id])
+    if @recipe_food_edit.update(recipe_food_params)
+      flash[:success] = 'Ingredient successfully updated.'
+      redirect_to recipe_path(@recipe_food_edit.recipe)
+    else
+      flash[:danger] = 'Ingredient updating Failed. Please try again.'
+    end
+  end
+
   private
 
   def recipe_food_params
