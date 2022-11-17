@@ -1,4 +1,4 @@
-<h2 class="text-center text-decoration-underline">Recipe #<%= @recipe.id %></h2>
+<h2 class="text-center text-decoration-underline"> <%= @recipe.name %></h2>
 
 <div class="d-flex justify-content-between">
     <p>Preparation time: <%= @recipe.preparation_time%><%="Hour".pluralize(@recipe.preparation_time)%></p>
@@ -24,9 +24,11 @@
 </ol>
 <div class="d-flex justify-content-between">
     <button class="btn btn-success">Generate shopping list</button>
-    <button class="btn btn-success">Add ingredient</button>
+    <%= link_to new_recipe_recipe_food_path(@recipe), class: "btn btn-success" do %>
+        Add ingredient
+    <% end %>
 </div>
-<table class="table table-bordered table-striped mt-4">
+<table class="table table-sm table-bordered table-striped mt-4 mb-3">
   <thead>
     <tr>
       <th scope="col">Food</th>
@@ -35,5 +37,18 @@
       <th scope="col">Actions</th>
     </tr>
   </thead>
+    <tbody>
+   <% @recipe_food.each do |rec| %>
+    <tr>
+      <td><%= rec.food.name %></td>
+      <td><%= rec.quantity %> <%= rec.food.measurement %></td>
+      <td>$<%= rec.food.price * rec.quantity %></td>
+        <td class="last">
+         <%= link_to "edit", "/recipes/#{rec.recipe.id}/recipe_foods/#{rec.id}/edit", class: "btn btn-success" %>
+         <%= button_to "delete", "/recipes/#{rec.recipe.id}/recipe_foods/#{rec.id}", method: :delete, class: "btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
 
