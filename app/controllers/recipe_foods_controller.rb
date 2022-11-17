@@ -43,11 +43,11 @@ class RecipeFoodsController < ApplicationController
   def edit
     @recipe_food_edit = RecipeFood.find(params[:id])
     @foods = Food.all
-    unless @recipe_food_edit.recipe.user == current_user
-      flash[:alert] =
-        'You can not edit the ingredient that you did not add'
-      return redirect_to recipes_path
-    end
+    return if @recipe_food_edit.recipe.user == current_user
+
+    flash[:alert] =
+      'You can not edit the ingredient that you did not add'
+    redirect_to recipes_path
   end
 
   def update
