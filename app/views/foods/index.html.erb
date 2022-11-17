@@ -1,3 +1,4 @@
+<div class="container">
 <h1 class="heading">Food List</h1>
 <%= link_to "Add Food", new_food_path, class: "btn btn-primary mb-3 mt-3" %>
 
@@ -5,8 +6,9 @@
   <thead>
     <tr>
       <th scope="col">Name</th>
+       <th scope="col">Quantity</th>
       <th scope="col">Measurement</th>
-      <th scope="col">Price</th>
+      <th scope="col">Unit Price</th>
         <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -14,6 +16,7 @@
    <% @foods.each do |food| %>
     <tr>
       <td><%= food.name %></td>
+       <td><%= food.quantity%></td>
       <td><%= food.measurement %></td>
       <td>$<%= food.price %></td>
       <td class="last">
@@ -25,3 +28,4 @@
   </tbody>
 </table>
   
+</div>

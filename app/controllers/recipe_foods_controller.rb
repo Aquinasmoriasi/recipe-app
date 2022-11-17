@@ -1,51 +1,48 @@
 class RecipeFoodsController < ApplicationController
-  def index
-    @recipe_foods = RecipeFood.all
+  def new
+    recipe = Recipe.find(params[:recipe_id])
+    unless recipe.user == current_user
+      flash[:alert] =
+        'You do not have access to add an ingredient on a recipe that does not belong to you.'
+      return redirect_to recipes_path
+    end
+
+    @recipe_food = RecipeFood.new
+    @foods = current_user.foods
   end
 
   def create
-    recipe_food = RecipeFood.create(recipe_params)
-    recipe_food.recipe = Recipe.find(params[:recipe_id])
-    recipe_food.food = Food.find(params[:food])
+    @recipe = Recipe.find(params[:recipe_id])
+    recipe_food = RecipeFood.new(recipe_food_params)
+    recipe_food.recipe = @recipe
 
     if recipe_food.save
-      flash[:success] = 'New Ingredient was successfully added.'
-      redirect_to recipe_path(recipe_food.recipe)
+      redirect_to recipe_path(@recipe), notice: 'New ingredient was successfully added.'
     else
-      flash[:danger] = 'New Ingredient adding Failed. Please try again.'
+      flash[:alert] = 'New Ingredient adding Failed. Please try again.'
     end
-  end
-
-  def new
-    @recipe_food = RecipeFood.new
-    @foods = Food.all
   end
 
   def destroy
     recipe_food = RecipeFood.find(params[:id])
-    redirect_to recipe_path(recipe_food.recipe)
-    recipe_food.destroy
-    flash[:danger] = 'Ingredient was successfully removed.'
-  end
 
-  def edit
-    @recipe_food_edit = RecipeFood.find(params[:id])
-    @foods = Food.all
-  end
-
-  def update
-    @recipe_food_edit = RecipeFood.find(params[:id])
-    if @recipe_food_edit.update(recipe_params)
-      flash[:success] = 'Ingredient successfully updated.'
-      redirect_to recipe_path(@recipe_food_edit.recipe)
-    else
-      flash[:danger] = 'Ingredient updating Failed. Please try again.'
+    unless recipe_food.recipe.user == current_user
+      flash[:alert] =
+        'You can not delete the ingredient that you did not added unless you are pro hacker'
+      return redirect_to recipes_path
     end
+
+    if recipe_food.destroy
+      flash[:notice] = 'Ingredient was successfully deleted.'
+    else
+      flash[:alert] = 'Ingredient deleing failed. Please try again.'
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
-  def recipe_params
-    params.require(:recipe_food).permit(:quantity)
+  def recipe_food_params
+    params.require(:recipe_food).permit(:quantity, :food_id)
   end
 end

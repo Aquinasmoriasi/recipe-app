@@ -1,3 +1,6 @@
+
+<div class="container">
+    <%= will_paginate @recipes %>
 <h2 class="text-center text-decoration-underline">All Recipes</h2>
 <p><%= "No recipes added yet" unless !@recipes.size.zero? %></p>
 
@@ -21,4 +24,6 @@
         </div>
      </div>
     <% end %>
+</div>
+<%= will_paginate @recipes%>
 </div>

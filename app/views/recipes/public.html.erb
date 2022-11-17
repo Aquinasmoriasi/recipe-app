@@ -1,14 +1,29 @@
-<h2 class="text-center text-decoration-underline">Public recipes</h2>
-<% @public_recipes.each do |r| %>
-      <div class="d-flex border border m-3 p-3">
-        <div class="col-3">
-            <h3><%= r.name %></h3>
-            <p>By: <%= r.user.name %></p>
+
+<div class="container">
+  <% @public_recipes.each do |recipe| %>
+  <div class="card mb-3 style-card" style="max-width: 540px; padding-left:30px">
+    <div class="row g-0">
+      <div class="col-md-4 oh">
+        <%=  link_to recipe.name, recipe_path(recipe),style: "font-weight: bold; font-size: 22px; padding-top: 10px;" %> 
+        <span class="font-bold">By:<%= recipe.user.name %></span>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <p class="card-text">
+            <span>Total food items: </span>
+            <span class="font-bold"><%= recipe.foods.length %></span>
+          </p>
+          <p class="card-text">
+            <span>Total Price: $</span>
+            <span class="font-bold"><%=@totals[recipe.name] %></span>
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Added <%= time_ago_in_words(recipe.created_at)%></small>
+          </p>
         </div>
-        <% @total = r.user.foods.map {|f| f.quantity * f.price } %>
-        <div class="col-9 d-flex flex-column">
-           <p>Total food items: <%= r.user.foods.size %></p>
-           <p>Total price: <%= @total.inject(0, :+) %></p>
-        </div>
+      </div>
     </div>
-<% end %>
+  </div>
+  <% end %>
+</div>
+

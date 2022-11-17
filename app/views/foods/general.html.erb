@@ -1,8 +1,9 @@
-<h1 class="heading">Shopping List</h1>
+<div class="container">
+  <h1 class="heading">Shopping List</h1>
 
 <div class="details"> 
-    <p class="amount">Amounts of food items to buy: 3</p>
-    <p class="total">Total value of food needed:$819</p>
+    <p class="amount">Amounts of food items to buy:<span class="">&nbsp;<%= @foods.length %></span></p>
+    <p class="total">Total value of food needed:<span class="">&nbsp;$<%= @total %></p>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -18,9 +19,10 @@
     <tr>
       <td><%= food.name %></td>
       <td><%= food.quantity %></td>
-      <td>$<%= food.price %></td>
+      <td>$<%= food.price * food.quantity %></td>
     </tr>
         <% end %>
   </tbody>
 </table>
   
+</div>
