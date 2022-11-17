@@ -11,7 +11,8 @@ class RecipesController < ApplicationController
     end
 
     @recipe = Recipe.find(params[:id])
-    @recipe_foods = RecipeFood.where(recipe_id: @recipe.id)
+ @recipe_food = RecipeFood.includes(:food).all.where(recipe_id: @recipe)
+
   end
 
   def create
