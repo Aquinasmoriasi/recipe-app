@@ -1,33 +1,42 @@
-<h2 class="text-center text-decoration-underline">Recipe #<%= @recipe.id %></h2>
+<div class="container">
+<h2 class="text-center text-decoration-underline"><%=@recipe.name %></h2>
 
 <div class="d-flex justify-content-between">
-    <p>Preparation time: <%= @recipe.preparation_time%><%="Hour".pluralize(@recipe.preparation_time)%></p>
-    <div class="d-flex gap-2 align-items-start">
-        <p>Public:  </p>
-        <label class="switch mt-1">
-            <%=check_box_tag("public", value = "1", checked = @recipe.public, disabled: true )%>
-            <span class="slider round"></span>
-        </label>
-    </div>
+  <p>
+    Preparation time: <%=
+    @recipe.preparation_time%><%="Hour".pluralize(@recipe.preparation_time)%>
+  </p>
+  <div class="d-flex gap-2 align-items-start">
+    <p>Public:</p>
+    <label class="switch mt-1">
+      <%=check_box_tag("public", value = "1", checked = @recipe.public,
+      disabled: true )%>
+      <span class="slider round"></span>
+    </label>
+  </div>
 </div>
 <div>
-    <p>Cooking time: <%= @recipe.cooking_time%><%="Hour".pluralize(@recipe.cooking_time)%></p>
+  <p>
+    Cooking time: <%=
+    @recipe.cooking_time%><%="Hour".pluralize(@recipe.cooking_time)%>
+  </p>
 </div>
 
 <h5 class="text-decoration-underline ps-3">Steps</h5>
 <ol>
-    <% @recipe.description.split(/\n/) do |des| %>
-        <li>
-            <%= des %>
-        </li>
-    <% end %>
+  <% @recipe.description.split(/\n/) do |des| %>
+  <li><%= des %></li>
+  <% end %>
 </ol>
 <div class="d-flex justify-content-between">
-    <button class="btn btn-success">Generate shopping list</button>
-    <button class="btn btn-success">Add ingredient</button>
+   <%= link_to "Generate shopping list",'/general_shopping_list' ,class: "btn btn-success"%>
+  <%= link_to "Add ingedrients", new_recipe_recipe_food_path(@recipe),class: "btn btn-success"%>
 </div>
-<table class="table table-bordered table-striped mt-4">
-  <thead>
+
+<div class="overflow-auto lg:overflow-visible flex justify-center mt-3">
+  <table class="table table-bordered table-striped">
+    <% if @recipe_foods.length > 0 %>
+    <thead>
     <tr>
       <th scope="col">Food</th>
       <th scope="col">Quantity</th>
@@ -35,5 +44,22 @@
       <th scope="col">Actions</th>
     </tr>
   </thead>
-</table>
 
+    <% @recipe_foods.each do |recipe_food| %>
+    <tbody>
+         <tr>
+      <th scope="row"><%= recipe_food.food.name%></th>
+      <td><%= recipe_food.quantity %></td>
+      <td>$<%= recipe_food.quantity * recipe_food.food.price %></td>
+      <td><%= button_to "delete","#{recipe_recipe_foods_path(@recipe)}/#{recipe_food.id}", method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+    </tr>
+    </tbody>
+    <% end %> 
+    <% else %>
+    <p class="">Ingredient list is empty.</p>
+    <% end %>
+  </table>
+</div>
+
+
+</div>

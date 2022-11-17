@@ -8,7 +8,7 @@ post 'authenticate', to: 'authentication#authenticate'
     resources :recipe_foods
   end
     get '/general_shopping_list', to: 'foods#general'
-  # get '/public_recipes', to: 'recipes#public'
+  get '/public_recipes', to: 'recipes#public'
 
   
   root to: "foods#index"

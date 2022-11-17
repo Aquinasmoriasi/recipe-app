@@ -1,0 +1,13 @@
+
+<div class="formm">
+  <%= form_with url: recipe_recipe_foods_path, scope: :recipe_food do |f| %>
+  <div class="mb-3">
+    <%= f.label :quantity, class: " form-label" %> <%= f.number_field :quantity, class: "edit" , placeholder: "quantity" %>
+  </div>
+    <div class="mb-3">
+    <%= f.label :food_id, class: " form-label" %>  
+    <%= f.collection_select(:food_id, @foods, :id, :name,{prompt: "Select a Food"}, {class: ""}) %>
+  </div>
+  
+  <p><%= f.submit "Add ingredient", class: "btn btn-primary" %> <% end %></p>
+</div>

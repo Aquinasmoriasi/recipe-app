@@ -1,10 +1,13 @@
+
+<div class="container">
+    <%= will_paginate @recipes %>
 <h2 class="text-center text-decoration-underline">All Recipes</h2>
 <div class="mt-1 mb-5">
     <% @recipes.each do |recipe| %>
       <div class="d-flex border border m-3 p-3">
         <div class="col-3">
             <%= link_to recipe_path(recipe) do%>
-                <h3>Recipe #<%= recipe.id%></h3>
+                <h3><%= recipe.name%></h3>
             <% end %>
             <%= button_to "remove", recipe_path(recipe), method: :delete, class: "btn btn-danger" %>
         </div>
@@ -19,4 +22,6 @@
         </div>
      </div>
     <% end %>
+</div>
+<%= will_paginate @recipes%>
 </div>
