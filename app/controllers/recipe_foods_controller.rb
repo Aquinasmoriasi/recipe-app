@@ -3,14 +3,14 @@ class RecipeFoodsController < ApplicationController
     @recipe_food = RecipeFood.new
     @foods = current_user.foods
     recipe = Recipe.find(params[:recipe_id])
-    unless recipe.user == current_user
-      flash[:alert] =
-        'You do not have access to add an ingredient on a recipe that does not belong to you.'
-      return redirect_to recipes_path
-    end
+    return if recipe.user == current_user
+
+    flash[:alert] =
+      'You do not have access to add an ingredient on a recipe that does not belong to you.'
+    redirect_to recipes_path
   end
 
- def create
+  def create
     recipe_food = RecipeFood.create(recipe_food_params)
     recipe_food.recipe = Recipe.find(params[:recipe_id])
     recipe_food.food = Food.find(params[:food])
@@ -42,7 +42,7 @@ class RecipeFoodsController < ApplicationController
 
   def edit
     recipe_food = RecipeFood.find(params[:id])
-      unless recipe_food.recipe.user == current_user
+    unless recipe_food.recipe.user == current_user
       flash[:alert] =
         'You can not delete the ingredient that you did not added unless you are pro hacker'
       return redirect_to recipes_path
