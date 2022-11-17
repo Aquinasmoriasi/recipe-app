@@ -42,6 +42,7 @@ class RecipesController < ApplicationController
   end
 
   def public
+
     @totals = {}
     @public_recipes = Recipe.where(public: true).order('created_at DESC')
     @public_recipes.each do |pub|
@@ -51,6 +52,7 @@ class RecipesController < ApplicationController
       end
       @totals[pub.name] = total
     end
+
   end
 
   private
