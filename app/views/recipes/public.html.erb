@@ -1,0 +1,14 @@
+<h2 class="text-center text-decoration-underline">Public recipes</h2>
+<% @public_recipes.each do |r| %>
+      <div class="d-flex border border m-3 p-3">
+        <div class="col-3">
+            <h3><%= r.name %></h3>
+            <p>By: <%= r.user.name %></p>
+        </div>
+        <% @total = r.user.foods.map {|f| f.quantity * f.price } %>
+        <div class="col-9 d-flex flex-column">
+           <p>Total food items: <%= r.user.foods.size %></p>
+           <p>Total price: <%= @total.inject(0, :+) %></p>
+        </div>
+    </div>
+<% end %>

@@ -35,6 +35,10 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  def public
+    @public_recipes = Recipe.includes(:user).where(public: true)
+  end
+
   private
 
   def recipe_params
