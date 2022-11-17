@@ -41,14 +41,13 @@ class RecipeFoodsController < ApplicationController
   end
 
   def edit
-    recipe_food = RecipeFood.find(params[:id])
-    unless recipe_food.recipe.user == current_user
-      flash[:alert] =
-        'You can not delete the ingredient that you did not added unless you are pro hacker'
-      return redirect_to recipes_path
-    end
     @recipe_food_edit = RecipeFood.find(params[:id])
     @foods = Food.all
+    unless @recipe_food_edit.recipe.user == current_user
+      flash[:alert] =
+        'You can not edit the ingredient that you did not add'
+      return redirect_to recipes_path
+    end
   end
 
   def update
