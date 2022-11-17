@@ -10,7 +10,6 @@
         <div class="col-3">
             <%= link_to recipe_path(recipe) do%>
                 <h3><%= recipe.name %></h3>
-                <h3><%= recipe.name%></h3>
             <% end %>
             <%= button_to "remove", recipe_path(recipe), method: :delete, class: "btn btn-danger" %>
         </div>
